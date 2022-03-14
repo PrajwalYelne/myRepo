@@ -1,4 +1,4 @@
 # myRepo
-PSL Git practice repo
+PSL Java practice repo
 
-It's a practice repository to understand git and github
+It's a practice repository to understand java concepts.

@@ -7,3 +7,10 @@ public class UserBO extends ArrayList<User> {
         u.add(new User("prakash raj", "7548921445", "prakash", "raj@abc.in"));
         return u;
     }
+
+    void removeUser(int n1, int n2) {
+        this.removeRange(n1 , n2);
+    }
+
+}
+

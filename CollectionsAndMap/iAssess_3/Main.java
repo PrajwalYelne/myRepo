@@ -43,14 +43,3 @@ public class Main {
     }
 }
 
-/*
-
-qq,ccc,dd,555
-qq,ppp,zz,455
-qq,eee,dd,555
-qq,eee,dd,555
-qq,eee,zz,544
-qq,ttt,aa,252
-
-
-* */

@@ -26,3 +26,20 @@ public class ItemType {
     public void setDeposit(double deposit) {
         this.deposit = deposit;
     }
+    
+    public double getCostPerDay() {
+        return costPerDay;
+    }
+
+    public void setCostPerDay(double costPerDay) {
+        this.costPerDay = costPerDay;
+    }
+
+    @Override
+    public String toString() {
+        return "The details of the item type are:" +
+                "\nName:" + this.name +
+                "\nDeposit:" + this.deposit +
+                "\nCost Per Day:" + this.costPerDay;
+    }
+}

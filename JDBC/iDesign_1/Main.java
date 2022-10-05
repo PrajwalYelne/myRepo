@@ -1,33 +1,31 @@
-package ExceptionHandling.iDesign_1;
-
-import java.util.Scanner;
-
+// Main.java
+import java.util.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+    public static void main(String[] args) throws Exception
+    {
+        
+        //fill your code here
+        BookDAO bookdao=new BookDAO();
+        System.out.println("List of Books");
+        System.out.format("%-5s %-20s %-20s %-10s %s\n","Id","Title","Category","Author","Price");
+       // System.out.println("Id       Title          Category       Author      Price");
 
-        System.out.println("Enter the Item type details:");
-        System.out.println("Enter the name:");
-        String name = in.nextLine();
 
-        System.out.println("Enter the deposit:");
-        String depositStr = in.nextLine();
-        double deposit = 0;
-        try {
-            deposit = Double.parseDouble(depositStr);
 
-            System.out.println("Enter the cost per day:");
-            String costPerDayStr = in.nextLine();
-            double costPerDay = 0;
-            try {
-                costPerDay = Double.parseDouble(costPerDayStr);
-                ItemType i = new ItemType(name, deposit, costPerDay);
-                System.out.println(i.toString());
-            } catch (NumberFormatException e) {
-                System.out.println("java.lang.NumberFormatException: For input string: \"" + costPerDayStr + "\"");
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("java.lang.NumberFormatException: For input string: \"" + depositStr + "\"");
+        ArrayList<Book> listBooks=new ArrayList<Book>();
+
+        listBooks=bookdao.listBooks();
+        for(Book book:listBooks){
+            Integer id=book.getId();
+            String title=book.getTitle();
+            String category=book.getCategory();
+            String author=book.getAuthor();
+            Double price=book.getPrice();
+            System.out.format("%-5s %-20s %-20s %-10s %s\n",id,title,category,author,price);
+
         }
+
+        
+
     }
 }

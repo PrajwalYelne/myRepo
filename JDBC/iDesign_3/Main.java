@@ -1,20 +1,31 @@
-import java.util.*;
-import java.text.*;
 import java.io.*;
-public class Main
-{
-	public static void main(String[] args) throws Exception{
-// 		System.out.println("Hello World");
-        InputStreamReader r = new InputStreamReader(System.in);
-        BufferedReader br  = new BufferedReader(r);
-        System.out.println("Enter the date to be formatted:(MM-dd-yyyy)");
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        Date d= sdf.parse(br.readLine());
-        sdf = new SimpleDateFormat("EEE, MMM d, yy");
-        System.out.println("Date Format with EEE, MMM d, yy : "+sdf.format(d));
-        sdf = new SimpleDateFormat("dd.MM.yyyy");
-        System.out.println("Date Format with dd.MM.yyyy : "+sdf.format(d));
-        sdf = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println("Date Format with dd dd/MM/yyyy : "+sdf.format(d));
-	}
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String args[]) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String countryName,airportCode,airportName,city;
+        System.out.println("Enter the Airport Code :");
+        ArrayList<Airport> airportlist=new ArrayList<Airport>();
+        airportCode = br.readLine();
+        System.out.println("Enter the Airport name :");
+        airportName = br.readLine();
+        System.out.println("Enter the City :");
+        city = br.readLine();
+	System.out.println("Enter the Country name :");
+        countryName = br.readLine();
+        Airport new_airport=new Airport(airportCode,airportName,city,countryName);
+        AirportDAO obj=new AirportDAO();
+        obj.insertAirport(new_airport);
+        System.out.format("%-10s %-40s %-10s %s\n","IATA Code","Name","City","Country");
+
+         airportlist=obj.listAirport();
+         for(Airport airport:airportlist)
+         {
+             System.out.format("%-10s %-40s %-10s %s\n",airport.getIataAirportCode(),
+             airport.getName(),airport.getCity(),airport.getCountry());
+         }
+
+        
+    }
 }

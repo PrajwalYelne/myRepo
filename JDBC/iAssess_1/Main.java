@@ -1,25 +1,25 @@
-// package FundamentalClasses.iAssess_1;
+import java.util.*;
+import java.io.*;
+import java.text.SimpleDateFormat;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
-        map.put("DH", "DEL");
-        map.put("MB", "MUB");
-        map.put("KL", "KOL");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter the code");
-        String code = in.nextLine();
-        StringBuilder sb = new StringBuilder(code);
-        String s = sb.substring(0,2);
-        int i = Integer.parseInt(code.substring(2));
-        sb.replace(0,2,map.get(s));
-        sb.replace(3, sb.length(), String.format("%05d", i));
-
-        System.out.println("Formatted code\n" + sb);
+public class Main{
+    
+    public static void main(String [] args) throws Exception{
+        //fill your code here
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Before the Delete");
+        System.out.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %s\n","Id","Name","Email","Password","Age","Role","CreatedDate","Status");
+        UserDAO udao = new UserDAO();
+		List<User> userList = udao.listUsers();
+		for(User x : userList) System.out.println(x);
+		
+        System.out.println("Enter the Id :");
+        udao.deleteUser(sc.nextInt());
+        System.out.println("After the Delete");
+		System.out.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s %s\n","Id","Name","Email","Password","Age","Role","CreatedDate","Status");
+        
+		userList = udao.listUsers();
+        for(User x : userList) System.out.println(x);
     }
+
 }

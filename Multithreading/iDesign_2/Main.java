@@ -1,33 +1,47 @@
-package ExceptionHandling.iDesign_2;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
 
-        System.out.println("Enter the number of seats to be booked:");
-        int n = in.nextInt();
-        int s = 0;
+	public static void main(String[] args) throws InterruptedException {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number of users:");
+		int n = sc.nextInt();
+		ArrayList<User> list = new ArrayList<>();
+		sc.nextLine();
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Enter the details of user " + (i+1));
+			String s = sc.nextLine();
+			String a[] = s.split(",");
+			User user = new User(a[0] , a[1] , a[2] , a[3]);
+			list.add(user);
+			a=null;
+		}
+		
+		System.out.println("Enter the number of cities:");
+		int n1 = sc.nextInt();
+		CityCount citycount[] = new CityCount[n1];
+		List<String> list1 = new ArrayList<>(); 
+		for(int i=1;i<=n1;i++)
+		{
+			System.out.println("Enter the name of city " + i);
+			String s = sc.next();
+			list1.add(s);
+			
+		}
+		
+		for(int i=0;i<n1;i++) {
+			String s = list1.get(i);
+			citycount[i] = new CityCount(s , list);
+			citycount[i].start();
+			citycount[i].join();			
+			System.out.println(s + "--" + citycount[i].getCount());
+		}
+		
+		
+	}
 
-        try {
-            if (n > 100 || n < 0)
-                throw new ArrayIndexOutOfBoundsException();
-            int[] array = new int[n];
-            for (int i = 0; i < n; i++) {
-                System.out.println("Enter the seat number " + (i + 1));
-                s = in.nextInt();
-                if (s > 100 || s < 0)
-                    throw new ArrayIndexOutOfBoundsException();
-                else
-                    array[i] = s;
-            }
-
-            System.out.println("The seats booked are:");
-            for (int e : array)
-                System.out.println(e);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("java.lang.ArrayIndexOutOfBoundsException: " + (s - 1));
-        }
-    }
 }

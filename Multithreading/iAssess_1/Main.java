@@ -1,29 +1,34 @@
-// package ExceptionHandling.iAssess_1;
+import java.util.*;
+import java.io.*;
+public class Main extends Thread
+{
+    String textCounter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter the stage event start date and end date");
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy-HH:mm:ss");
-        try{
-            String start = in.nextLine();
-            Date startDate = sdf.parse(start);
-
-            String end = in.nextLine();
-            Date endDate = sdf.parse(end);
-
-            System.out.println("Start date:" + sdf.format(startDate));
-            System.out.println("End date:" + sdf.format(endDate));
-        }catch (ParseException e){
-            System.out.println("Input dates should be in the format 'dd-MM-yyyy-HH:mm:ss'");
-        }
-
-
+    Main(String textCounter){
+        this.textCounter = textCounter;
     }
-}
+    public static void main(String[] args)
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Number of Counters :");
+        int num=sc.nextInt();
+        sc.nextLine();
+        Main[] obj=new Main[num];
+        String[] input = new String[num];
+        for(int i=0;i<num;i++)
+        {
+            System.out.println("Enter text for counter "+(i+1)+" :");
+            input[i]=sc.nextLine();
+            obj[i]=new Main(input[i]);
+        }
+        for(int i=0;i<num;i++){
+            
+            System.out.println("Counter " + (i+1)+" Result :");
+            obj[i].start();
+            try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			};
+        }
+    }

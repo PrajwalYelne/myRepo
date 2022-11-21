@@ -32,3 +32,26 @@ public class Main extends Thread
 			};
         }
     }
+    
+ public void run()
+    {
+        TreeMap<Character, Integer> charCountMap= new TreeMap<Character, Integer>();
+        char[] strArray = textCounter.toCharArray();
+ 
+        for (char c : strArray) {
+            if (charCountMap.containsKey(c)) {
+ 
+                charCountMap.put(c, charCountMap.get(c) + 1);
+            }
+            else {
+
+                charCountMap.put(c, 1);
+            }
+        }
+
+        for (Map.Entry entry : charCountMap.entrySet()) {
+            System.out.print(entry.getKey() + ":" + entry.getValue()+" ");
+        }
+        System.out.println();
+        }
+}

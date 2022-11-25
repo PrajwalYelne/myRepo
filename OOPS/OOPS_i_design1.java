@@ -10,6 +10,7 @@ public class Department {
 	public void display() {
 		//write your code here
 
+		
 	}
 	public void displayStaff(){
 		System.out.println(staff.getStaffName() +" is working in the "+departmentName+" department as "+staff.getDesignation());

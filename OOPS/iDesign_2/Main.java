@@ -1,30 +1,29 @@
-package CollectionsAndMap.iDesign_2;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-
+import java.util.*;
+import java.io.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        ArrayList<String> list = new ArrayList<String>();
-        String choice = "";
-        do {
-            System.out.println("Enter Email address");
-            list.add(in.nextLine());
-            System.out.println("Do you want to Continue?(yes/no)");
-            choice = in.nextLine();
-        } while (choice.equalsIgnoreCase("yes"));
-
-        System.out.println("Enter the email addresses to be searched separated by comma");
-        String[] input = in.nextLine().split(",");
-
-        ArrayList<String> search = new ArrayList<>();
-        Collections.addAll(search, input);
-
-        if (list.containsAll(search))
-            System.out.println("Email addresses are present");
-        else
-            System.out.println("Email addresses are not present");
-    }
+		public static void main(String[] args) throws IOException{
+		//fill your code here
+		 InputStreamReader r=new InputStreamReader(System.in);    
+        BufferedReader sc =new BufferedReader(r); //  Scanner sc = new Scanner(System.in);
+		System.out.println("Choose Account Type\n1.Savings Account\n2.Current Account");
+		int n = Integer.parseInt(sc.readLine());
+		String z = new String();
+		if(n == 1){
+			System.out.println("Enter Account details in comma separated(Account Name,Account Number,Bank Name,Organisation Name)");
+		    z  = sc.readLine();
+		    String[] tokens= z.split(",");
+			SavingsAccount sa = new SavingsAccount(tokens[0],tokens[1],tokens[2],tokens[3]);
+			sa.display();
+            // System.out.println(z);
+		}
+		else if(n == 2){
+	
+			System.out.println("Enter Account details in comma separated(Account Name,Account Number,Bank Name,TIN Number)");
+		    z = sc.readLine();
+		    String[] token= z.split(",");
+			CurrentAccount ca = new CurrentAccount(token[0],token[1],token[2],token[3]);
+			ca.display();
+            // System.out.println(z);
+		}
+	}
 }

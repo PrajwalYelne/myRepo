@@ -15,6 +15,7 @@ public class Main {
 			SavingsAccount sa = new SavingsAccount(tokens[0],tokens[1],tokens[2],tokens[3]);
 			sa.display();
             // System.out.println(z);
+			
 		}
 		else if(n == 2){
 	
@@ -24,6 +25,7 @@ public class Main {
 			CurrentAccount ca = new CurrentAccount(token[0],token[1],token[2],token[3]);
 			ca.display();
             // System.out.println(z);
+			
 		}
 	}
 }

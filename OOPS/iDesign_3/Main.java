@@ -1,54 +1,55 @@
-package CollectionsAndMap.iDesign_3;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-
+// Main.java
+import java.util.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter the number of address");
-        int n = in.nextInt();
-        in.nextLine();
-        Map<String, ArrayList<Address>> map = new HashMap<>();
 
-        for (int i = 0; i < n; i++) {
-            System.out.println("Enter the address " + (i + 1) + " detail");
-            String[] input = in.nextLine().split(",");
-            Address a = new Address(input[0], input[1], input[2], input[3], input[4]);
-            String city = input[2];
-            if (map.containsKey(city)) {
-                ArrayList<Address> l = map.get(city);
-                l.add(a);
-                map.replace(city, l);
-            } else {
-                ArrayList<Address> l = new ArrayList<>();
-                l.add(a);
-                map.put(city, l);
-            }
-        }
+	public static void main(String[] args) {
 
-        System.out.println("Enter the city to be searched");
-        String toSearchCity = in.nextLine();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter your account number:");
+		String accNo = sc.next();
+		System.out.println("Enter the balance of the account:");
+		double balance = sc.nextDouble();
+		System.out.println("Enter the type of transfer to be made:\r\n" + "1.NEFT\r\n" + "2.IMPS\r\n" + "3.RTGS");
+		int choice = sc.nextInt();
+		if (choice == 1) {
+			NEFTTransfer neft = new NEFTTransfer(accNo, balance);
+			System.out.println("Enter the amount to be transferred:");
+			double transfer = sc.nextDouble();
+			if (neft.validate(transfer) == true)
+				if (neft.transfer(transfer) == true) {
+					System.out.println("Transfer occurred successfully");
+					System.out.println("Remaining balance is " + neft.getBalance());
+				} else
+					System.out.println("Transfer could not be made");
+			else
+				System.out.println("Account number or transfer amount seems to be wrong");
+		}
+		if (choice == 2) {
+			IMPSTransfer imps = new IMPSTransfer(accNo, balance);
+			System.out.println("Enter the amount to be transferred:");
+			double transfer = sc.nextDouble();
+			if (imps.validate(transfer) == true)
+				if (imps.transfer(transfer) == true) {
+					System.out.println("Transfer occurred successfully");
+					System.out.println("Remaining balance is " + imps.getBalance());
+				} else
+					System.out.println("Transfer could not be made");
+			else
+				System.out.println("Account number or transfer amount seems to be wrong");
+		}
+		if (choice == 3) {
+			RTGSTransfer rtgs = new RTGSTransfer(accNo, balance);
+			System.out.println("Enter the amount to be transferred:");
+			double transfer = sc.nextDouble();
+			if (rtgs.validate(transfer) == true)
+				if (rtgs.transfer(transfer) == true) {
+					System.out.println("Transfer occurred successfully");
+					System.out.println("Remaining balance is " + rtgs.getBalance());
+				} else
+					System.out.println("Transfer could not be made");
+			else
+				System.out.println("Account number or transfer amount seems to be wrong");
+		}
+	}
 
-        if (map.containsKey(toSearchCity)) {
-            System.out.println("Line 1          Line 2          City            State           Pincode");
-            ArrayList<Address> list = map.get(toSearchCity);
-            for (Address a : list) {
-                String line1 = a.getAddressLine1();
-                String line2 = a.getAddressLine2();
-                String city = a.getCity();
-                String state = a.getState();
-                String pincode = a.getPincode();
-
-                System.out.printf("%-15s %-15s %-15s %-15s %s\n", line1, line2, city, state, pincode);
-            }
-
-        }else{
-            System.out.println("Searched city not found");
-        }
-
-
-    }
 }

@@ -44,3 +44,4 @@ public class Main {
         System.out.println("The GST to be paid is Rs." + e.getGST(days));
     }
 }
+

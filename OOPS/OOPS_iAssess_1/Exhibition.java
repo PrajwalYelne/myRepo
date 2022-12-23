@@ -8,3 +8,4 @@ public class Exhibition extends Event {
         this.noOfStalls = noOfStalls;
     }
 }
+

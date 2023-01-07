@@ -1,30 +1,20 @@
-package CollectionsAndMap.iDesign_2;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-
+import java.io.*;
+import java.util.*;
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        ArrayList<String> list = new ArrayList<String>();
-        String choice = "";
-        do {
-            System.out.println("Enter Email address");
-            list.add(in.nextLine());
-            System.out.println("Do you want to Continue?(yes/no)");
-            choice = in.nextLine();
-        } while (choice.equalsIgnoreCase("yes"));
-
-        System.out.println("Enter the email addresses to be searched separated by comma");
-        String[] input = in.nextLine().split(",");
-
-        ArrayList<String> search = new ArrayList<>();
-        Collections.addAll(search, input);
-
-        if (list.containsAll(search))
-            System.out.println("Email addresses are present");
-        else
-            System.out.println("Email addresses are not present");
-    }
+	public static void main(String args[]) throws Exception {
+		//write your code here
+		FileWriter wr = new FileWriter("output.csv");
+		BufferedWriter bw = new BufferedWriter(wr);
+		InputStreamReader r = new InputStreamReader(System.in);
+		BufferedReader br  = new BufferedReader(r);
+		System.out.println("Enter the number of users:");
+		int n = Integer.parseInt(br.readLine());
+		ArrayList<User> arr = new ArrayList<>();
+		for(int i=1;i<n+1;i++){
+			System.out.println("Enter the details of user :"+i);
+			String[] data = br.readLine().split(",");
+			arr.add(new User(data[0],data[1],data[2],data[3]));
+		}
+		UserBO.writeFile(arr,bw);
+	}
 }

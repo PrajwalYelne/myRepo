@@ -1,5 +1,5 @@
 public class User {
-	//write your code here
+	
 	private String name ,mobileNumber,username,password;
 	User(String name, String mobileNumber, String username, String password){
 		this.name = name;

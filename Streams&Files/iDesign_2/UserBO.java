@@ -12,3 +12,4 @@ public class UserBO {
 		bw.flush();
 	}
 }
+

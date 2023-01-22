@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.*;
 public class EventBO {
-	//fill your code here
+	
 	public List<Event> readFromFile(BufferedReader br) throws Exception{
 		List<Event> a = new ArrayList<Event>();
 		

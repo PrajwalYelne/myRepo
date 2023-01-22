@@ -1,5 +1,5 @@
 public class Event {
-	//fill your code here
+	
 	private String eventName , ownerName;
 	private Integer attendeesCount;
 	Event(){}
